@@ -5,9 +5,9 @@ import { serverConnect } from "./app/configs/server.config";
 const main = async () => {
   try {
     await serverConnect();
-    // app.listen(port, () => {
-    //   console.log(`The app is running at http://localhost:${port}`);
-    // });
+    app.listen(port, () => {
+      console.log(`The app is running at http://localhost:${port}`);
+    });
   } catch (error) {
     console.log(error);
   }
