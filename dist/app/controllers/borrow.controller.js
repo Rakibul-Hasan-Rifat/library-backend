@@ -39,7 +39,7 @@ const getBorrowBooksDetails = (req, res) => __awaiter(void 0, void 0, void 0, fu
             {
                 $project: {
                     bookTitle: "$books.title",
-                    isbn: "books.isbn",
+                    isbn: "$books.isbn",
                     totalQuantity: true,
                 },
             },

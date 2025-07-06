@@ -26,7 +26,7 @@ export const getBorrowBooksDetails = async (req: Request, res: Response) => {
       {
         $project: {
           bookTitle: "$books.title",
-          isbn: "books.isbn",
+          isbn: "$books.isbn",
           totalQuantity: true,
         },
       },
