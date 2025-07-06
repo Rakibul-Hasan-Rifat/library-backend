@@ -24,7 +24,7 @@ export const getBorrowBooksDetails = async (req: Request, res: Response) => {
       },
       { $project: { _id: false, doc: false } },
       { $unwind: "$book" },
-      { $project: { "book.title": true, "book.isbn": true, totalQuantity: true } },
+      // { $project: { "book.title": true, "book.isbn": true, totalQuantity: true } },
     ]);
 
     res.send({
