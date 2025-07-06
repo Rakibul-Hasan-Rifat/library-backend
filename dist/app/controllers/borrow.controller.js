@@ -23,21 +23,26 @@ const getBorrowBooksDetails = (req, res) => __awaiter(void 0, void 0, void 0, fu
                 $group: {
                     _id: "$book",
                     totalQuantity: { $sum: "$quantity" },
-                    doc: { $push: "$$ROOT" },
                 },
             },
-            { $unwind: "$doc" },
             {
                 $lookup: {
                     from: "books",
-                    localField: "doc.book",
                     foreignField: "_id",
-                    as: "book",
+                    localField: "_id",
+                    as: "books",
                 },
             },
-            { $project: { _id: false, doc: false } },
-            { $unwind: "$book" },
-            { $project: { "book.title": true, "book.isbn": true } },
+            {
+                $unwind: "$books",
+            },
+            {
+                $project: {
+                    bookTitle: "$books.title",
+                    isbn: "books.isbn",
+                    totalQuantity: true,
+                },
+            },
         ]);
         res.send({
             success: true,
